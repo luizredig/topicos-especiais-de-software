@@ -1,0 +1,11 @@
+services:
+  gerenciador-de-eventos-flask:
+    image: python:3.9
+    container_name: gerenciador-de-eventos-flask
+    restart: always
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+    command: pip install -r requirements.txt && python main.py
