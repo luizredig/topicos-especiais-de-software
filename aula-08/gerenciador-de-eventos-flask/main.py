@@ -70,7 +70,8 @@ def logout():
 @login_required
 def dashboard():
     eventos = Evento.query.filter_by(id_usuario=current_user.id).all()
-    return render_template('dashboard.html', eventos=eventos)
+    eventos_todos = Evento.query.all()
+    return render_template('dashboard.html', eventos=eventos, eventos_todos=eventos_todos)
 
 @app.route('/create_event', methods=['GET', 'POST'])
 @login_required
@@ -125,6 +126,11 @@ def delete_event(event_id):
     db.session.delete(evento)
     db.session.commit()
     return redirect(url_for('dashboard'))
+
+@app.route('/events')
+def events():
+    eventos = Evento.query.all()
+    return render_template('events.html', eventos=eventos)
 
 if __name__ == '__main__':
     with app.app_context():
