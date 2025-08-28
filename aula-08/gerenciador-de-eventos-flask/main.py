@@ -132,6 +132,12 @@ def events():
     eventos = Evento.query.all()
     return render_template('events.html', eventos=eventos)
 
+@app.route('/perfil')
+@login_required
+def perfil():
+    meus_eventos = Evento.query.filter_by(id_usuario=current_user.id).all()
+    return render_template('perfil.html', usuario=current_user.username, eventos=meus_eventos)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

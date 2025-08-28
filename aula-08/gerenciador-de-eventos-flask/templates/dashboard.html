@@ -3,7 +3,10 @@ body %}
 <div class="container vh-100 d-flex justify-content-center align-items-center">
   <div class="card p-4" style="width: 100%; max-width: 95%">
     <h1>Dashboard</h1>
-    <p>Bem-vindo, {{ current_user.username }}!</p>
+    <p>
+      Bem-vindo, {{ current_user.username }}!
+      <a href="{{ url_for('perfil') }}" class="btn btn-link">Meu perfil</a>
+    </p>
     <a href="{{ url_for('logout') }}"
       ><button type="button" class="btn btn-outline-danger">Logout</button></a
     >
